@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: juniors-project-postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: password
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/sever.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  redis:
+    image: redis:latest
+    command: redis-server
+    ports: 
+      - "6379:6379"

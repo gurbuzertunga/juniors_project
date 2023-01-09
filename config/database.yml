@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  host: db
+  encoding: unicode
+  username: postgres
+  password: password
+  pool: 5
+
+development:
+  <<: *default
+  database: Junior_Project_development
+
+test:
+  <<: *default
+  database: Junior_Project_test
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+  database: Junior_Project_production
