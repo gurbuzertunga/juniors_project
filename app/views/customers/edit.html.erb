@@ -1,6 +1,6 @@
 <h1>Edit Profile</h1>
-<%=  form_with model: @customer do |f| %>
-    <%= render "shared/error_messages" , object: form.object %>
+<%=  form_with(model: @customer,data:{turbo:false}) do |f| %>
+    <%= render "shared/error_messages" , object: f.object %>
     <%= f.label :name %><br>
     <%= f.text_field :name %><br><br>
     

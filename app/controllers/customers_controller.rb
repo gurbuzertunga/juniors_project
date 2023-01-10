@@ -22,8 +22,8 @@ class CustomersController < ApplicationController
         @customer = Customer.find(params[:id])
     end
     def update
-        @customer = Customer.update(customer_params)
-        if @customer.save
+        @customer = Customer.find(params[:id])
+        if @customer.update(customer_params)
             flash[:notice] = "Profile updated Successfully"
             redirect to @customer
         else
