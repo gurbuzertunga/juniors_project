@@ -11,11 +11,11 @@ class EmployeesController < ApplicationController
 
     def create
         @employee = Employee.new(employee_params)
-        if @employee.save!
-            flash[:success] ="Welcome To Employee page"
+        if @employee.save
+            flash[:notice] ="Welcome To Employee page"
             redirect_to root_path
         else
-           flash[:danger]="Failed to sign up .Please try again"
+           flash.now[:alert]="Failed to sign up .Please try again"
            render 'new'
         end
     end
@@ -27,10 +27,10 @@ class EmployeesController < ApplicationController
     def update
         @employee = Employee.find(params[:id])
         if @employee.update(employee_params)
-            flash[:success]="Successfuly updated!!!"
+            flash[:notice]="Successfuly updated!!!"
             redirect_to @employee
         else
-            flash[:danger]="Failed to update"
+            flash[:alert]="Failed to update"
             redirect_to edit_employee_path(@employee.id)
         end
     end

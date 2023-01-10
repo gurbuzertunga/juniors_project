@@ -5,30 +5,29 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-<<<<<<< HEAD
    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-=======
->>>>>>> 43f5daf10ef69f858bc986cb8dd3bec39266aebe
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-<<<<<<< HEAD
     <% if notice %>
     <p class="alert alert-success" style="padding-top:70px"><%= notice %></p>
   <% end %>
   <% if alert %>
     <p class="alert alert-danger" style="padding-top:70px"><%= alert %></p>
   <% end %>
-=======
     <% if current_user %>
     <div> 
-      <%= link_to "Logout",signout_path %> | <%= link_to "Edit employee information",edit_employee_path(current_user.id) %>
+      <%= link_to "Logout",signout_path %> | 
+      <% if Employee.where(email:current_user.email).any? %>
+      <%= link_to "Edit employee information",edit_employee_path(current_user.id) %>
+      <%else%>
+      <%= link_to "Edit customer information",edit_customer_path(current_user.id) %>
+      <%end%>
     </div>
     <% end %>
->>>>>>> 43f5daf10ef69f858bc986cb8dd3bec39266aebe
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>

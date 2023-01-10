@@ -1,12 +1,9 @@
-class MyValidator < ActiveModel::Validator
+class CustomerValidator < ActiveModel::Validator
     def validate(record)
-        emails = ["abounassif.roni@gmail.com","roni@gmail.com"]
-        emails.each do |mail|
-            if mail == record.email
+        
+            if Employee.where(email:record.email).any?
                 record.errors.add :email, "is already taken!"
-            end
-        end
-      
+            end 
     end
   end
 
@@ -19,8 +16,8 @@ class Customer < ApplicationRecord
                    uniqueness: true
 validates_uniqueness_of :name
 validates :password ,length: {minimum: 6}
- validates_with MyValidator
-#  has_secure_password
+ validates_with CustomerValidator
+has_secure_password
 
 
  

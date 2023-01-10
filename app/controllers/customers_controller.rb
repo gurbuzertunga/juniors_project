@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
         @customer = Customer.new(customer_params)
         if @customer.save
             flash[:notice] = "#{@customer.name} singed up successfully"
-            redirect_to @customer
+            redirect_to root_path
         else
             render 'new'
         end
@@ -34,7 +34,7 @@ class CustomersController < ApplicationController
         @customer = Customer.find(params[:id])
         if @customer.destroy
             flash[:notice] = "Account deleted Successfully"
-            redirect_to customers_path
+            redirect_to root_path
         end
     end
 private
