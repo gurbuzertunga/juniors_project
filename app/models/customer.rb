@@ -17,6 +17,7 @@ class Customer < ApplicationRecord
  validates :email, length: { maximum: 255 },
                    format: { with: VALID_EMAIL_REGEX },
                    uniqueness: true
+validates_uniqueness_of :name
 validates :password ,length: {minimum: 6}
  validates_with MyValidator
 #  has_secure_password
