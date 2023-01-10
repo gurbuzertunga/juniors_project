@@ -1,0 +1,23 @@
+<h2>Employee Signup</h2>
+<%=  form_with model: @employee do |f| %>
+  <%= f.label :name %><br>
+  <%= f.text_field :name,placeholder:"Enter your name" %><br><br>
+  
+  <%= f.label :email %><br>
+  <%= f.text_field :email,placeholder:"example@gmail.com" %><br><br>
+
+  <%= f.label :password %><br>
+  <%= f.password_field :password %><br><br>
+  
+  <%= f.label :password_confirmation %><br>
+  <%= f.password_field :password_confirmation %><br><br>
+
+  <%= f.label :phone %><br>
+  <%= f.text_field :phone, placeholder:"00000000 or 00-000-000" %><br><br>
+
+  <%= f.label :date_of_birth %><br>
+  <%= f.date_field :date_of_birth %><br><br>
+  
+  <%= f.submit "Signup" %>
+  
+<% end %>
