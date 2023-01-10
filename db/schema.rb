@@ -31,6 +31,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_192350) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 74e980d93b99390a57b3284ece9c03770b0f8726
   end
 
 end
