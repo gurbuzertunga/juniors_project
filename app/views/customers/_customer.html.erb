@@ -1,6 +1,15 @@
-<li>
-<h1><%= customer.name %></h1>
-<p><%= customer.email %></p>
-<p><%= customer.date_of_birth %></p>
-<%= link_to "View",customer_path(customer) %>
-</li>
+<div class="flex">
+    <% if customer.image.attached? %>
+        <%= image_tag customer.image, style:"width: 50px;"%>
+    <% else %>
+        <%= image_tag "default_profile", style:"width: 50px;"%>
+    <% end %>
+    
+    <div>
+        <h1><%= customer.name %></h1>
+        <p><%= customer.email %></p>
+        <p><%= customer.date_of_birth %></p>
+    </div>
+
+    <%= link_to "View", customer_path(customer) %>
+</div>
