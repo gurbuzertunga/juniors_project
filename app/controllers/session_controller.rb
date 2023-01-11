@@ -1,7 +1,7 @@
 class SessionController < ApplicationController
 
     def create
-        user = Employee.find_by(email: params[:session][:email])
+        user = Employee.find_by(email: params[:session][:email]) || Customer.find_by(email: params[:session][:email])
         if user && user.authenticate(params[:session][:password])
           log_in(user)
         else

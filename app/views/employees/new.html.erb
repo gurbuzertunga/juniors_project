@@ -1,5 +1,5 @@
 <h2>Employee Signup</h2>
-<%=  form_with model: @employee do |f| %>
+<%=  form_with(model: @employee,data:{turbo:false}) do |f| %>
   <%= f.label :name %><br>
   <%= f.text_field :name,placeholder:"Enter your name" %><br><br>
   
