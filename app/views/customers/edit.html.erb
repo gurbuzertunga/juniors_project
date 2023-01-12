@@ -1,25 +1,47 @@
-<h1>Edit Profile</h1>
-<%=  form_with(model: @customer,data:{turbo:false}) do |f| %>
-    <%= render "shared/error_messages" , object: f.object %>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br><br>
-    
-    <%= f.label :email %><br>
-    <%= f.text_field :email %><br><br>
-  
-    <%= f.label :password %><br>
-    <%= f.password_field :password %><br><br>
-    
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %><br><br>
-  
-    <%= f.label :date_of_birth %><br>
-    <%= f.date_field :date_of_birth %><br><br>
-
-    <%= f.label :image %><br>
-    <%= f.file_field :image %><br><br>
-
-    <%= f.submit "Update" %>
-    
-  <% end %>
-<%= link_to "Back to customer", customer_path(@customer) %>
+<div class="h-screen md:flex">
+	<div
+		class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-yellow-500 to-orange-300 i justify-around items-center hidden">
+		<div>
+			<h1 class="text-white font-bold text-4xl font-sans">Juniors Project</h1>
+			<%= link_to "Home", root_path, class:"text-center block w-28 bg-white text-blue-500 mt-4 py-2 rounded-2xl font-bold mb-2" %>
+		</div>
+		<div class="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+		<div class="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+		<div class="absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+		<div class="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+	</div>
+	<div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
+		<%=  form_with(model: @customer,data:{turbo:false}) do |f| %>
+			<div class="flex">
+          <% if current_user.image.attached? %>
+                  <%= image_tag current_user.image, class:"my-auto w-8 h-8 rounded-full object-cover object-center" %>
+              <% else %>
+                  <%= image_tag "default_profile", class:"mt-5 w-8 h-8 rounded-full object-cover object-center" %>
+              <% end %>
+          <div>
+            <h1 class="text-gray-800 font-bold text-2xl mb-1"><%= current_user.email %></h1>
+            <p class="text-sm font-normal text-gray-600 mb-7"><%= current_user.name %></p>
+          </div>
+      </div>
+			<div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+        <%= f.text_field :name, class:"pl-2 outline-none border-none w-full" %>
+      </div>
+			<div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+        <%= f.text_field :email, class:"pl-2 outline-none border-none w-full" %>
+      </div>
+			<div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+        <%= f.date_field :date_of_birth, class:"pl-2 outline-none border-none w-full" %>
+      </div>
+      <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+        <%= f.file_field :image, class:"pl-2 outline-none border-none w-full" %>
+      </div>
+      <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+        <%= f.password_field :password, class:"pl-2 outline-none border-none w-full" %>
+      </div>
+      <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+        <%= f.password_field :password_confirmation, class:"pl-2 outline-none border-none w-full" %>
+      </div>
+			<%= f.submit "Update", class:"block w-full bg-blue-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2" %>
+		<% end %>
+	</div>
+</div>
