@@ -1,6 +1,11 @@
 class EmployeesController < ApplicationController
     before_action :authenticate_user, only: [:show, :edit, :update, :destroy]
 
+    def index
+        @employees = Employee.all        
+    end
+    
+
     def new
         @employee = Employee.new
     end
@@ -14,6 +19,8 @@ class EmployeesController < ApplicationController
 
     def create
         @employee = Employee.new(employee_params)
+        @employee.image.attach(params[:employee][:image])
+
         if @employee.save
             flash[:notice] ="Welcome To Employee page"
             redirect_to root_path
@@ -29,6 +36,8 @@ class EmployeesController < ApplicationController
 
     def update
         @employee = Employee.find(params[:id])
+        @employee.image.attach(params[:employee][:image])
+
         if @employee.update(employee_params)
             flash[:notice]="Successfuly updated!!!"
             redirect_to @employee

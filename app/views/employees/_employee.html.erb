@@ -1,0 +1,15 @@
+<div class="flex">
+    <% if employee.image.attached? %>
+        <%= image_tag employee.image, style:"width: 50px;"%>
+    <% else %>
+        <%= image_tag "default_profile", style:"width: 50px;"%>
+    <% end %>
+    
+    <div>
+        <h1><%= employee.name %></h1>
+        <p><%= employee.email %></p>
+        <p><%= employee.date_of_birth %></p>
+    </div>
+
+    <%= link_to "View", employee_path(employee) %>
+</div>

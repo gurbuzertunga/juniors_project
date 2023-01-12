@@ -13,6 +13,8 @@ class CustomersController < ApplicationController
     end
     def create 
         @customer = Customer.new(customer_params)
+        @customer.image.attach(params[:customer][:image])
+        
         if @customer.save
             flash[:notice] = "#{@customer.name} singed up successfully"
             redirect_to root_path
@@ -25,6 +27,8 @@ class CustomersController < ApplicationController
     end
     def update
         @customer = Customer.find(params[:id])
+        @customer.image.attach(params[:customer][:image])
+
         if @customer.update(customer_params)
             flash[:notice] = "Profile updated Successfully"
             redirect_to @customer
