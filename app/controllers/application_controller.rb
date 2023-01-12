@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
     helper_method :current_user
+    helper_method :logged_in?
 
     def current_user
       if session[:user_email]
@@ -21,6 +22,10 @@ class ApplicationController < ActionController::Base
     def log_out
         session.delete(:user_email)
         @current_user = nil
+    end
+
+    def authenticate_user 
+      redirect_to root_path unless logged_in?
     end
   
 end

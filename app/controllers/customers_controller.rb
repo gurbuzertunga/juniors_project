@@ -1,10 +1,12 @@
 class CustomersController < ApplicationController
-
+    before_action :authenticate_user, only: [:show, :edit, :update, :destroy,:index]
+    
     def index
         @customers = Customer.all
     end
     def show
-        @customer = Customer.find(params[:id])
+        @current_user = current_user
+        redirect_to '/signin' unless @current_user
     end
     def new
         @customer = Customer.new

@@ -81,4 +81,5 @@ group :development, :test do
   gem 'shoulda-matchers'
 end
 
+gem 'sidekiq'
 

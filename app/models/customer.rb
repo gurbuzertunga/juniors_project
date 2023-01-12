@@ -9,6 +9,10 @@ class CustomerValidator < ActiveModel::Validator
 
 class Customer < ApplicationRecord
     include ActiveModel::Validations
+
+    has_many :products, as: :owner
+    has_many :buys
+    
  validates_presence_of :email,:password,:name,:date_of_birth
  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
  validates :email, length: { maximum: 255 },

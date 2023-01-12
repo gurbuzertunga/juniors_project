@@ -13,5 +13,8 @@ Rails.application.routes.draw do
   root 'session#new'
 
   resources :employees
+  resources :products
+  get '/mark_accepted', to: "products#mark_accepted"
+  resources :buys ,only: [:create,:index]
 
 end

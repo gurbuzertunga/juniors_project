@@ -1,0 +1,15 @@
+<li>
+ <p>Customer:<br>
+  Name: <%= buy.customer.name %><br>
+  Email: <%= buy.customer.email %><br>
+  </p>
+  <p>Product: <br>
+  Name: <%= buy.product.name %><br>
+  Price: <%= buy.product.price %>$<br>
+  </p>
+  <% if Product.find_by(id: buy.product.id,status: "Delivered") %>
+   <p style="color:green">Delivered</p>
+  <% else %>
+    <%= button_to "Delivered",product_path(buy.product.id) ,method: :put %>
+  <% end %>
+</li>

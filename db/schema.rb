@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_10_192350) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_11_121341) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buys", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_buys_on_customer_id"
+    t.index ["product_id"], name: "index_buys_on_product_id"
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "email"
@@ -31,10 +40,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_192350) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
-<<<<<<< HEAD
-=======
-
->>>>>>> 74e980d93b99390a57b3284ece9c03770b0f8726
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.string "status"
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id"], name: "index_products_on_owner"
+  end
+
+  add_foreign_key "buys", "customers"
+  add_foreign_key "buys", "products"
 end

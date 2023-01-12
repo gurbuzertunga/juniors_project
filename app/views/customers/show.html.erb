@@ -1,7 +1,8 @@
-<h1><%= @customer.name %></h1>
-<p><%= @customer.email %></p>
-<p><%= @customer.date_of_birth %></p>
+<h1>Customer <%= @current_user.name.capitalize %></h1>
 
-<%= link_to "Back to customers", customers_path %>
-|<%= link_to "Edit Profile", edit_customer_path(@customer) %>
-<%= button_to "Delete Account", customer_path(@customer) , method: :delete %>
+
+
+<div>
+<%= link_to "Back to customers", customers_path %><br><br>
+<%= button_to "Delete Account", customer_path(@current_user) , method: :delete %>
+</div>

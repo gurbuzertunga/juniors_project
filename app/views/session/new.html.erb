@@ -1,4 +1,7 @@
-<h2>Employee Login</h2>
+<% if logged_in?  %>
+ <div style="color:green">You already signed in .</div>
+<% else %>
+<h2>Login</h2>
 <%= form_for(:session,data:{turbo:false}) do |f| %>
   <%= f.text_field :email, placeholder:"example@gmail.com" %><br><br>
   <%= f.password_field :password,placeholder:"Enter your password" %><br><br>
@@ -6,3 +9,4 @@
 <% end %>
 <p style="color:red">(if you dont have an account click on the below link.)</p>
 <p>Click here: <%= link_to "Signup as Employee",new_employee_path %> | <%= link_to "Signup as Customer",new_customer_path %></p>
+<% end %>
