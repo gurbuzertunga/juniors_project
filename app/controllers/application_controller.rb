@@ -27,5 +27,21 @@ class ApplicationController < ActionController::Base
     def authenticate_user 
       redirect_to root_path unless logged_in?
     end
+
+    def check_employee
+      unless !Employee.find_by(email: session[:user_email])
+        flash[:alert]="You can't access this page!!!!"
+        redirect_to root_path
+      end
+    end
+
+    def check_customer
+      unless !Customer.find_by(email: session[:user_email])
+        flash[:alert]="You can't access this page!!!!"
+        redirect_to root_path
+      end
+    end
+
+
   
 end

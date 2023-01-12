@@ -21,10 +21,14 @@
     <div> 
       <%= link_to "Logout",signout_path %> | 
       <% if Employee.where(email:current_user.email).any? %>
+       <%= link_to "Profile Page",employee_path(current_user) %> |
        <%= link_to "Edit employee information",edit_employee_path(current_user.id) %> |
+       <%= link_to "Employees list", employees_path %>|
        <%= link_to "Ordered list",buys_path %>
       <%else%>
+      <%= link_to "Profile Page",customer_path(current_user) %> |
       <%= link_to "Edit customer information",edit_customer_path(current_user.id) %> | 
+      <%= link_to "Customers list", customers_path %> |
       <%= link_to "Products", products_path %>
       <%end%>
     </div>

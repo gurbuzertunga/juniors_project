@@ -10,6 +10,6 @@
   <% if Product.find_by(id: buy.product.id,status: "Delivered") %>
    <p style="color:green">Delivered</p>
   <% else %>
-    <%= button_to "Delivered",product_path(buy.product.id) ,method: :put %>
+    <%= button_to "Delivered",mark_delivered_path(id: buy.product.id) %>
   <% end %>
 </li>

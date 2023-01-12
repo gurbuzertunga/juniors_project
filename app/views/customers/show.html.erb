@@ -1,5 +1,10 @@
-<h1>Customer <%= @current_user.name.capitalize %></h1>
-
+<h1> 
+<% if @current_user.image.attached? %>
+        <%= image_tag @current_user.image, style:"width: 50px;"%>
+<% else %>
+        <%= image_tag "default_profile", style:"width: 50px;"%>
+<% end %>
+ Customer <%= @current_user.name.capitalize %></h1>
 
 
 <div>

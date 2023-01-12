@@ -2,11 +2,12 @@ class ProductsController < ApplicationController
     before_action :authenticate_user
 
     def index
-        @products = Product.all
+        @products = Product.where(status: nil)
     end
 
     def create
         @product = current_user.products.new(product_params)
+        @product.image.attach(params[:product][:image])
         if @product.save 
             flash[:notice]="Product successfuly created!!"
             redirect_to current_user
@@ -15,7 +16,23 @@ class ProductsController < ApplicationController
         end
     end
 
+    def edit
+        @product = Product.find(params[:id])
+    end
+
     def update
+        @product = Product.find(params[:id])
+        @product.image.attach(params[:product][:image])
+        if @product.update(product_params)
+            flash[:notice]="Product is updated!!"
+            redirect_to current_user
+        else
+            flash[:alert]="Failed to update."
+            render 'edit'
+        end
+    end
+
+    def mark_delivered 
         product = Product.find(params[:id])
         if product.update(status: "Delivered")
             buy = Buy.find_by(product_id: product.id)

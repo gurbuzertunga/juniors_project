@@ -1,11 +1,10 @@
 class EmployeesController < ApplicationController
     before_action :authenticate_user, only: [:show, :edit, :update, :destroy]
-
+    before_action :check_customer , except: %i[:new,:create]
     def index
         @employees = Employee.all        
     end
     
-
     def new
         @employee = Employee.new
     end
