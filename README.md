@@ -15,3 +15,6 @@ Once an employee marked delivered mail sent to the customer to click accepted to
 images should be uploaded to aws.
 
 Employees are allowed to make updates in the images but customers are not.
+
+<!-- Create DB -->
+docker-compose run --rm web bundle exec rails db:migrate
