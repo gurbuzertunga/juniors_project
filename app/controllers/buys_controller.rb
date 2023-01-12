@@ -8,6 +8,8 @@ class BuysController < ApplicationController
     def create
         buy = Buy.new(customer_id: params[:customer],product_id: params[:product])
         if buy.save 
+            product = Product.find(params[:product])
+            product.update!(status: "ordered")
             flash[:notice]="You successfuly ordered the product."
             redirect_to products_path
         else

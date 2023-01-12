@@ -32,24 +32,24 @@ class ProductsController < ApplicationController
         end
     end
 
-    def mark_delivered 
-        product = Product.find(params[:id])
-        if product.update(status: "Delivered")
-            buy = Buy.find_by(product_id: product.id)
+    def send_order 
+        @product = Product.find(params[:id])
+        if @product.update(status: "sent")
+            buy = Buy.find_by(product_id: @product.id)
             customer = buy.customer
-            SendMailJob.perform_now(customer,product)
-            flash[:notice]="Product is delivered to customer"
+            SendMailJob.perform_now(customer,@product)
+            flash[:notice]="The order is sent"
             redirect_to buys_path
         else
-            flash[:alert]="Failed to delivered ."
+            flash[:alert]="Failed to sent!!"
             redirect_to buys_path
         end
     end
 
-    def mark_accepted
+    def mark_delivered
         product = Product.find(params[:product])
-        product.update!(owner_id: params[:customer],owner_type:"Customer",status: "Accepted")
-        flash[:notice]="Product is accepted from customer."
+        product.update!(owner_id: params[:customer],owner_type:"Customer",status: "delivered")
+        flash[:notice]="Product is now yours."
         redirect_to root_path
     end
 

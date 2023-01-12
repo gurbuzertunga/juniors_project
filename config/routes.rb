@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   resources :employees
   resources :products
-  post '/mark_delivered', to: "products#mark_delivered"
-  get '/mark_accepted', to: "products#mark_accepted"
+  post '/send_order', to: "products#send_order"
+  get '/mark_delivered', to: "products#mark_delivered"
   resources :buys ,only: [:create,:index]
 
 end
