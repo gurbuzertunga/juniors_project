@@ -18,6 +18,6 @@ production:
   <<: *default
   url: postgres://test:xci3iFOGQZuZuWs2rT3z8tfwVpZM62jC@dpg-cf00m4qrrk0eqcoqlm0g-a/test_81q8
   host: test
-  database: test_production
+  database: test_81q8
   username: test
   password: xci3iFOGQZuZuWs2rT3z8tfwVpZM62jC
