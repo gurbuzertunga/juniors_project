@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_10_192350) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_11_121341) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_192350) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "buys", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_buys_on_customer_id"
+    t.index ["product_id"], name: "index_buys_on_product_id"
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "email"
     t.string "name"
@@ -61,6 +70,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_192350) do
     t.string "password_digest"
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.string "status"
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id"], name: "index_products_on_owner"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "buys", "customers"
+  add_foreign_key "buys", "products"
 end

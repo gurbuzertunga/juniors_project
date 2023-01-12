@@ -1,0 +1,19 @@
+<li>
+ <p>Customer:<br>
+  Name: <%= buy.customer.name %><br>
+  Email: <%= buy.customer.email %><br>
+  </p>
+  <p>Product: <br>
+  Name: <%= buy.product.name %><br>
+  Price: <%= buy.product.price %>$<br>
+  </p>
+  <% if Product.find_by(id: buy.product.id,status: "ordered") %>
+    <%= button_to "Send" , send_order_path(id: buy.product.id ) %>
+  <% end %>
+  <% if Product.find_by(id: buy.product.id,status: "sent")  %>
+     <p style="color:green"> Sent</p>
+  <% end %>
+   <% if Product.find_by(id: buy.product.id,status: "delivered")  %>
+     <p style="color:green"> Its delivered.</p>
+  <% end %> 
+</li>

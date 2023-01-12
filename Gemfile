@@ -78,6 +78,7 @@ group :development, :test do
   gem 'shoulda-matchers'
 end
 
+gem 'sidekiq'
 
 # images
 gem "image_processing"

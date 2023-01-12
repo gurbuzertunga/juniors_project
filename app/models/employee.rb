@@ -8,6 +8,9 @@ end
 
 class Employee < ApplicationRecord
     include ActiveModel::Validations
+
+    has_many :products, as: :owner
+
     validates :name, presence: true
     validates :date_of_birth, presence: true
 

@@ -1,1 +1,18 @@
-<h1> <%= @current_user.name.capitalize %></h1>
+<h1> 
+<% if @current_user.image.attached? %>
+        <%= image_tag @current_user.image, style:"width: 50px;"%>
+    <% else %>
+        <%= image_tag "default_profile", style:"width: 50px;"%>
+    <% end %>
+ Employee <%= @current_user.name.capitalize %></h1>
+
+
+<% if @products.any? %>
+   <h2>Products:</h2>
+    <ul><%= render @products %></ul>
+ <% end %>
+
+ <h2>New Product: </h2>
+ <div> <%= render 'products/new' %></div>
+ <br><br>
+ <div><%= button_to "Delete Account", employee_path(@current_user) , method: :delete %></div>

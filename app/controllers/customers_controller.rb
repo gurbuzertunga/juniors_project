@@ -1,10 +1,13 @@
 class CustomersController < ApplicationController
-
+    before_action :authenticate_user, only: [:show, :edit, :update, :destroy,:index]
+    before_action :check_employee , except: %i[:new,:create]
+    
     def index
         @customers = Customer.all
     end
     def show
-        @customer = Customer.find(params[:id])
+        @current_user = current_user
+        redirect_to '/signin' unless @current_user
     end
     def new
         @customer = Customer.new
@@ -12,7 +15,6 @@ class CustomersController < ApplicationController
     def create 
         @customer = Customer.new(customer_params)
         @customer.image.attach(params[:customer][:image])
-        
         if @customer.save
             flash[:notice] = "#{@customer.name} singed up successfully"
             redirect_to root_path

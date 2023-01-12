@@ -1,7 +1,23 @@
-<h1><%= @customer.name %></h1>
-<p><%= @customer.email %></p>
-<p><%= @customer.date_of_birth %></p>
+<h1> 
+<% if @current_user.image.attached? %>
+        <%= image_tag @current_user.image, style:"width: 50px;"%>
+<% else %>
+        <%= image_tag "default_profile", style:"width: 50px;"%>
+<% end %>
+ Customer <%= @current_user.name.capitalize %></h1>
 
-<%= link_to "Back to customers", customers_path %>
-|<%= link_to "Edit Profile", edit_customer_path(@customer) %>
-<%= button_to "Delete Account", customer_path(@customer) , method: :delete %>
+ <h2>Owned Products</h2>
+ <ul> 
+ <% @current_user.products.each do |product| %>
+ <li>
+  Name:  <%= product.name %><br>
+  Price: <%= product.price %>$
+ </li>
+ <% end %>
+ </ul>
+
+
+<div>
+<%= link_to "Back to customers", customers_path %><br><br>
+<%= button_to "Delete Account", customer_path(@current_user) , method: :delete %>
+</div>

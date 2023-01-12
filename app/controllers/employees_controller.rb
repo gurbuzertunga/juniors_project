@@ -1,10 +1,10 @@
 class EmployeesController < ApplicationController
-
+    before_action :authenticate_user, only: [:show, :edit, :update, :destroy]
+    before_action :check_customer , except: %i[:new,:create]
     def index
         @employees = Employee.all        
     end
     
-
     def new
         @employee = Employee.new
     end
@@ -12,6 +12,8 @@ class EmployeesController < ApplicationController
     def show
         @current_user = current_user
         redirect_to '/signin' unless @current_user
+        @product = Product.new
+        @products = @current_user.products
     end
 
     def create
@@ -41,6 +43,19 @@ class EmployeesController < ApplicationController
         else
             flash[:alert]="Failed to update"
             redirect_to edit_employee_path(@employee.id)
+        end
+    end
+
+    def destroy
+        @employee = Employee.find(params[:id])
+        first_employee = Employee.first
+        products = @employee.products
+        products.each do |product|
+            product.update!(owner_id: first_employee.id)
+        end
+        if @employee.destroy
+            flash[:notice] = "Account deleted Successfully"
+            redirect_to root_path
         end
     end
 

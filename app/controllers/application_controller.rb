@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
 
     helper_method :current_user
+    helper_method :logged_in?
+    before_action :set_current_user, if: :logged_in?
 
     def current_user
       if session[:user_email]
@@ -22,5 +24,31 @@ class ApplicationController < ActionController::Base
         session.delete(:user_email)
         @current_user = nil
     end
+
+    def authenticate_user 
+      redirect_to root_path unless logged_in?
+    end
+
+    def check_employee
+      unless !Employee.find_by(email: session[:user_email])
+        flash[:alert]="You can't access this page!!!!"
+        redirect_to root_path
+      end
+    end
+
+    def check_customer
+      unless !Customer.find_by(email: session[:user_email])
+        flash[:alert]="You can't access this page!!!!"
+        redirect_to root_path
+      end
+    end
+
+    private
+
+    def set_current_user
+      Current.user = current_user
+    end
+
+
   
 end
