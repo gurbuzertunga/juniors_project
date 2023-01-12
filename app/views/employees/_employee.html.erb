@@ -8,8 +8,12 @@
             <% end %>
         </div>
         <div class="text-sm">
-            <div class="font-medium text-gray-700"><%= employee.name%></div>
-            <div class="text-gray-400"><%= employee.email%></div>
+            <div class="font-medium text-gray-700">
+                <%= link_to employee.name, employee %>
+            </div>
+            <div class="text-gray-400">
+                <%= link_to employee.email, employee %>
+            </div>
         </div>
     </th>
     <td class="px-6 py-4">

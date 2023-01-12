@@ -14,11 +14,11 @@
 		<%=  form_with(model: @customer,data:{turbo:false}) do |f| %>
 			<div class="flex">
           <% if current_user.image.attached? %>
-                  <%= image_tag current_user.image, class:"my-auto w-8 h-8 rounded-full object-cover object-center" %>
+                  <%= image_tag current_user.image, class:"w-24 h-24 rounded-full object-cover object-center" %>
               <% else %>
-                  <%= image_tag "default_profile", class:"mt-5 w-8 h-8 rounded-full object-cover object-center" %>
+                  <%= image_tag "default_profile", class:"w-24 h-24 rounded-full object-cover object-center" %>
               <% end %>
-          <div>
+          <div class="mt-4">
             <h1 class="text-gray-800 font-bold text-2xl mb-1"><%= current_user.email %></h1>
             <p class="text-sm font-normal text-gray-600 mb-7"><%= current_user.name %></p>
           </div>
