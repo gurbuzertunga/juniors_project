@@ -71,6 +71,7 @@ gem 'sidekiq'
 
 # images
 gem "image_processing"
+gem "aws-sdk-s3"
 
 # tailwindcss
 gem "tailwindcss-rails"
