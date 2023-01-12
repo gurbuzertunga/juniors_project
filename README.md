@@ -18,3 +18,6 @@ Employees are allowed to make updates in the images but customers are not.
 
 <!-- Create DB -->
 docker-compose run --rm web bundle exec rails db:migrate
+
+testing
+deploy
