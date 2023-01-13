@@ -4,15 +4,17 @@ class ProductsController < ApplicationController
     def index
         @products = Product.where(status: nil)
     end
-
+    def new 
+        @product = Product.new
+    end
     def create
         @product = current_user.products.new(product_params)
         @product.image.attach(params[:product][:image])
         if @product.save 
             flash[:notice]="Product successfuly created!!"
-            redirect_to current_user
+            redirect_to my_products_path
         else
-           render "employees/show"
+           render "new"
         end
     end
 
@@ -52,7 +54,9 @@ class ProductsController < ApplicationController
         flash[:notice]="Product is now yours."
         redirect_to root_path
     end
-
+    def myproducts
+        @products = current_user.products
+    end
     private 
     def product_params 
         params.require(:product).permit(:name,:price)

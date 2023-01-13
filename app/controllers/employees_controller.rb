@@ -1,10 +1,10 @@
 class EmployeesController < ApplicationController
-    before_action :authenticate_user, only: [:show, :edit, :update, :destroy]
-    before_action :check_customer , except: %i[:new,:create]
+    before_action :authenticate_user, only: [:show, :edit, :update, :destroy,:index]
+    before_action :check_customer , except: [:create]
     def index
         @employees = Employee.all        
     end
-    
+
     def new
         @employee = Employee.new
     end
@@ -24,7 +24,7 @@ class EmployeesController < ApplicationController
             flash[:notice] ="Welcome To Employee page"
             redirect_to root_path
         else
-           flash.now[:alert]="Failed to sign up .Please try again"
+           flash.now[:danger]="Failed to sign up .Please try again"
            render 'new'
         end
     end
@@ -41,7 +41,7 @@ class EmployeesController < ApplicationController
             flash[:notice]="Successfuly updated!!!"
             redirect_to @employee
         else
-            flash[:alert]="Failed to update"
+            flash[:danger]="Failed to update"
             redirect_to edit_employee_path(@employee.id)
         end
     end
@@ -59,8 +59,9 @@ class EmployeesController < ApplicationController
         end
     end
 
+
     private 
     def employee_params 
-        params.require(:employee).permit(:name,:email,:password,:phone,:date_of_birth)
+        params.require(:employee).permit(:name,:email,:password,:password_confirmation,:phone,:date_of_birth)
     end
 end

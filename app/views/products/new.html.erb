@@ -1,0 +1,15 @@
+<div class="bg-white p-5 max-w-md mx-auto rounded shadow-sm">
+    <h2 class="text-4xl px-4 ">New Product</h2>
+<%= form_with(model: @product ,data: {turbo: false},class:"mt-10 space-y-8") do |f| %>
+<div style="color:red"> <%= render "shared/error_messages" , object: f.object %></div>
+  <%= f.text_field :name,class:"w-full border rounded h-12 px-4 focus:outline-none",placeholder:"Name" %><br><br>
+
+
+  <%= f.number_field :price , step: 0.5,class:"w-full border rounded h-12 px-4 focus:outline-none",placeholder:"Price" %><br><br>
+
+  <%= f.file_field :image,class:"w-full border rounded h-12 px-4 focus:outline-none",placeholder:"Image" %><br><br>
+  <div class="flex flex-col md:flex-row md:items-center justify-between ">
+  <%= f.submit "Create product",class:"bg-orange-500 text-sm active:bg-gray-700 cursor-pointer font-regular text-white px-4 py-2 rounded uppercase" %>
+  </div>
+  <% end %>
+  </div>
