@@ -16,7 +16,7 @@ test:
 
 production:
   <<: *default
-  url: postgres://test:xci3iFOGQZuZuWs2rT3z8tfwVpZM62jC@dpg-cf00m4qrrk0eqcoqlm0g-a/test_81q8
+  url: postgres://test:xci3iFOGQZuZuWs2rT3z8tfwVpZM62jC@dpg-cf00m4qrrk0eqcoqlm0g-a.frankfurt-postgres.render.com/test_81q8
   database: test_81q8_production
   username: test
   password: xci3iFOGQZuZuWs2rT3z8tfwVpZM62jC
