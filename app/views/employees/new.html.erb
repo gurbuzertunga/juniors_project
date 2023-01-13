@@ -7,6 +7,7 @@
       </div>
       
       <%=  form_with(model: @employee,data:{turbo:false}) do |f| %>
+        <div style="color:red"> <%= render "shared/error_messages" , object: f.object %></div>
         <div class="mb-4 text-lg">
           <%= f.text_field :name, placeholder:"John Doe", class:"w-full rounded-3xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md" %>
         </div>

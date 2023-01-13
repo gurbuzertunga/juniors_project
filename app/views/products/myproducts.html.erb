@@ -1,3 +1,13 @@
+<% if Employee.find_by(email: current_user.email) %>
+<%= link_to "New Product", new_product_path, class:"text-center block w-28 bg-orange-300 text-white mt-4 py-2 rounded-2xl font-bold mb-2",style:"margin-left:30px" %>
+<%end%>
+<section class="text-gray-600 body-font bg-[#F4F3FA] h-screen">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap -m-4 text-center">
+  
 <% @current_user.products.each do |product| %>
     <%= render product %>
 <% end %>
+</div>
+</div>
+</section>

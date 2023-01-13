@@ -10,9 +10,9 @@
 		<div class="absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
 		<div class="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
 	</div>
-	<div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
+	<div class="flex md:w-1/2 justify-center py-10 items-center bg-white" style="margin-top:25px">
 		<%=  form_with(model: @employee,data:{turbo:false}) do |f| %>
-			<div class="flex">
+			<div class="flex" >
           <% if current_user.image.attached? %>
                   <%= image_tag current_user.image, class:"w-24 h-24 rounded-full object-cover object-center" %>
               <% else %>
@@ -39,10 +39,10 @@
         <%= f.file_field :image, class:"pl-2 outline-none border-none w-full" %>
       </div>
       <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-        <%= f.password_field :password, class:"pl-2 outline-none border-none w-full" %>
+        <%= f.password_field :password, class:"pl-2 outline-none border-none w-full", placeholder:"******" %>
       </div>
       <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-        <%= f.password_field :password_confirmation, class:"pl-2 outline-none border-none w-full" %>
+        <%= f.password_field :password_confirmation, class:"pl-2 outline-none border-none w-full", placeholder:"******" %>
       </div>
 			<%= f.submit "Update", class:"block w-full bg-blue-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2" %>
 		<% end %>

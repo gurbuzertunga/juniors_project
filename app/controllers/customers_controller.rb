@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
     before_action :authenticate_user, only: [:show, :edit, :update, :destroy,:index]
-    before_action :check_employee , except: %i[:new,:create]
+    before_action :check_employee , except: [:create,:index]
     
     def index
         @customers = Customer.all
@@ -45,7 +45,7 @@ class CustomersController < ApplicationController
     end
 private
     def customer_params
-        params.require(:customer).permit(:email,:password,:name,:date_of_birth)
+        params.require(:customer).permit(:email,:password,:password_confirmation,:name,:date_of_birth)
     end
 
 end
