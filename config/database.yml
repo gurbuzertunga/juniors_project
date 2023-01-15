@@ -16,5 +16,7 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
-  database: Junior_Project_production
+  url: postgres://root:iW13U8xtHBNv7xmthlT660Ie7NqdSGXg@dpg-cf26ig1gp3jl0q170010-a/juniors
+  database: juniors_production
+  username: root
+  password: iW13U8xtHBNv7xmthlT660Ie7NqdSGXg
